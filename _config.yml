@@ -1,4 +1,4 @@
 #theme: jekyll-theme-minimal
-theme: beautiful-jekyll
+remote_theme: daattali/beautiful-jekyll@6.0.1
 title: Dreamer carfter's homepage
 description: Bookmark this to keep an eye on my project updates!
