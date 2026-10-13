@@ -11,12 +11,14 @@ description: Bookmark this to keep an eye on my project updates!
 # Your name to show in the footer
 author: Some Person
 
+layout: home
+
 ###############################################
 # --- List of links in the navigation bar --- #
 ###############################################
 
 navbar-links:
-  About Me: "aboutme"
+  #About Me: "aboutme"
   Resources:
     - Learn markdown: "https://www.markdowntutorial.com/"
   Author's home: "https://dreamercrafter.github.io"
