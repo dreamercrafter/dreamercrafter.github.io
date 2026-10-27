@@ -1,0 +1,41 @@
+---
+import type { Lang } from "../i18n/ui";
+
+interface Props {
+  lang: Lang;
+  hrefEspanol: string;
+  hrefIngles: string;
+}
+
+const { lang, hrefEspanol, hrefIngles } = Astro.props;
+---
+
+<div class="flex items-center gap-1 text-sm">
+  <a
+    href={hrefEspanol}
+    hreflang="es"
+    aria-label="Cambiar a español"
+    class={lang === "es" ? "lang-pill lang-active" : "lang-pill"}
+  >
+    🇪🇸
+  </a>
+  <a
+    href={hrefIngles}
+    hreflang="en"
+    aria-label="Switch to English"
+    class={lang === "en" ? "lang-pill lang-active" : "lang-pill"}
+  >
+    🇬🇧
+  </a>
+</div>
+
+<style>
+  @reference "../styles/global.css";
+
+  .lang-pill {
+    @apply rounded-full border border-[var(--color-border)] bg-[var(--color-bg-surface)]/60 px-3 py-1 transition;
+  }
+  .lang-active {
+    @apply text-[var(--color-text-primary)] bg-[color-mix(in_oklch,var(--color-accent-primary),transparent_75%)] border-[var(--color-accent-primary)];
+  }
+</style>

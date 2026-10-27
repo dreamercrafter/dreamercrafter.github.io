@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-primary: #0b1026;
+  --color-bg-surface: #0f162f;
+  --color-accent-primary: #9d7cff;
+  --color-accent-secondary: #3df5ff;
+  --color-text-primary: #e6e7ff;
+  --color-text-secondary: #b8c0ff;
+  --color-border: #1f2742;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  background: radial-gradient(
+      ellipse 120% 80% at 50% 0%,
+      color-mix(in oklch, var(--color-accent-primary), transparent 92%) 0%,
+      var(--color-bg-primary) 70%
+    )
+    var(--color-bg-primary);
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply antialiased text-[var(--color-text-primary)] bg-transparent;
+}
+
+::selection {
+  background: color-mix(in oklch, var(--color-accent-primary), transparent 60%);
+  color: var(--color-text-primary);
+}
+
+.hero-gradient {
+  background: radial-gradient(
+    ellipse 100% 60% at 50% 0%,
+    color-mix(in oklch, var(--color-accent-primary), transparent 88%) 0%,
+    transparent 100%
+  );
+}
+
+.glow-border {
+  border: 1px solid color-mix(in oklch, var(--color-accent-primary), transparent 70%);
+  box-shadow: 0 0 0 1px color-mix(in oklch, var(--color-accent-secondary), transparent 92%) inset,
+    0 10px 80px -30px color-mix(in oklch, var(--color-accent-primary), transparent 40%);
+}

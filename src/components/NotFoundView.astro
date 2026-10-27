@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Stamp404 from "./Stamp404.astro";
+import { getUi } from "../i18n/ui";
+import type { Lang } from "../i18n/ui";
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = "es" } = Astro.props;
+const t = getUi(lang);
+const prefix = lang === "es" ? "" : "/en";
+---
+
+<BaseLayout lang={lang} title={`404 · ${t["error.404.title"]}`} description={t["error.404.body"]}>
+  <main class="mx-auto flex min-h-[80vh] max-w-4xl flex-col items-center justify-center gap-10 px-6 py-24 text-center">
+    <div class="flex flex-col items-center justify-center gap-4">
+      <div class="stamp-wrap">
+        <Stamp404 lang={lang} />
+      </div>
+
+      <p class="text-sm uppercase tracking-widest text-[var(--color-text-secondary)]">
+        Adeptus Administratum
+      </p>
+    </div>
+
+    <div class="flex flex-col items-center gap-4">
+      <h1 class="text-balance text-5xl font-extrabold tracking-tight">{t["error.404.title"]}</h1>
+      <p class="max-w-xl text-balance text-[var(--color-text-secondary)] leading-relaxed">
+        {t["error.404.body"]}
+      </p>
+      <a
+        href={`${prefix}/`}
+        class="glow-border inline-flex items-center gap-2 rounded-full bg-[var(--color-bg-surface)]/70 px-6 py-2 text-sm font-medium transition hover:scale-[1.01]"
+      >
+        {t["error.404.cta"]}
+      </a>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .stamp-wrap {
+    filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.45));
+  }
+</style>

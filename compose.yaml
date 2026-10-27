@@ -1,0 +1,19 @@
+services:
+  astro:
+    image: node:24-alpine
+    working_dir: /app
+    user: "${UID:-1000}:${GID:-1000}"
+    environment:
+      - HOME=/tmp
+      - NODE_ENV=development
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    ports:
+      - "4321:4321"
+    command: sh -c "npm install && rm -f .astro/dev.json .astro/settings.json && npm run dev -- --host 0.0.0.0"
+    tty: true
+    stdin_open: true
+
+volumes:
+  node_modules:

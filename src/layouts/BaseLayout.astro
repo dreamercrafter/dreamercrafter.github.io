@@ -1,0 +1,50 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import { localizedPath } from "../i18n/utils";
+import type { Lang } from "../i18n/ui";
+
+interface Props {
+  title: string;
+  description?: string;
+  lang?: Lang;
+  alternates?: { es?: string; en?: string };
+}
+
+const {
+  title,
+  description = "Dreamer carfter's homepage",
+  lang = "es",
+  alternates,
+} = Astro.props;
+
+const path = Astro.url.pathname;
+const esHref = alternates?.es ?? localizedPath(path, "es");
+const enHref = alternates?.en ?? localizedPath(path, "en");
+
+const canonical = new URL(path, Astro.site).toString();
+const hreflang = {
+  es: new URL(esHref, Astro.site).toString(),
+  en: new URL(enHref, Astro.site).toString(),
+  "x-default": new URL(esHref, Astro.site).toString(),
+};
+---
+
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="es" href={hreflang.es} />
+    <link rel="alternate" hreflang="en" href={hreflang.en} />
+    <link rel="alternate" hreflang="x-default" href={hreflang["x-default"]} />
+  </head>
+  <body>
+    <Header lang={lang} hrefEspanol={esHref} hrefIngles={enHref} />
+    <slot />
+  </body>
+</html>
